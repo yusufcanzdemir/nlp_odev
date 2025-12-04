@@ -6,7 +6,7 @@ class DataAugmenter:
         self.synonyms = {
             "maç": ["müsabaka", "karşılaşma"],
             "galibiyet": ["zafer", "kazanım"],
-            "fenerbahçe": ["sarı kanaryalar", "fener", "sarı lacivertli ekip"],
+            "fenerbahçe": ["sarı kanaryalar", "fener", "sarı lacivertli ekip", "sarı lacivertliler"],
             "galatasaray": ["aslan", "cimbom", "sarı kırmızılılar", "sarı kırmızılı ekip"],
             "beşiktaş": ["kara kartal","siyah beyazlılar","siyah beyazlı ekip"],
             "yenilgi": ["mağlubiyet"],

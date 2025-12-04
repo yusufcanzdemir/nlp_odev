@@ -25,8 +25,6 @@ def load_from_folders():
                     file_path = os.path.join(category_path, filename)
                     
                     try:
-                        # Encoding sorunu olmaması için 'utf-8' veya 'windows-1254' deneriz
-                        # TTC-3600 genelde 'windows-1254' (ANSI) olabilir, ama önce utf-8 deneriz.
                         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                             text = f.read()
                             
@@ -35,7 +33,7 @@ def load_from_folders():
                         if text:
                             data.append({
                                 "text": text,
-                                "label": category  # Klasör adı etikettir (spor, ekonomi vb.)
+                                "label": category  
                             })
                             
                     except Exception as e:

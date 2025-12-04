@@ -6,3 +6,5 @@ matplotlib
 seaborn
 jupyter
 gensim
+streamlit
+plotly

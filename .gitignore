@@ -5,6 +5,8 @@ venv/
 # Python geçici dosyaları
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
 # VS Code ayar dosyaları
 .vscode/
