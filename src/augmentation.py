@@ -1,32 +1,34 @@
 import random
 import pandas as pd
 
+
 class DataAugmenter:
     def __init__(self):
+        # eş anlamlılar sözlüğü : bu kelimeler aynı anlamlı kelimelerle değişerek modelin overfitting yapmasını önler.
         self.synonyms = {
             "maç": ["müsabaka", "karşılaşma"],
             "galibiyet": ["zafer", "kazanım"],
             "fenerbahçe": ["sarı kanaryalar", "fener", "sarı lacivertli ekip", "sarı lacivertliler"],
             "galatasaray": ["aslan", "cimbom", "sarı kırmızılılar", "sarı kırmızılı ekip"],
-            "beşiktaş": ["kara kartal","siyah beyazlılar","siyah beyazlı ekip"],
+            "beşiktaş": ["kara kartal", "siyah beyazlılar", "siyah beyazlı ekip"],
             "yenilgi": ["mağlubiyet"],
             "gol": ["sayı"],
-            "rakip": ["hasım" , "ezeli rakip"],
+            "rakip": ["hasım", "ezeli rakip"],
             "final four": ["dörtlü final"],
             "antrenör": ["hoca", "teknik direktör", "teknik adam"],
-            
+
             "yapay zeka": ["AI", "akıllı sistemler"],
             "bilgisayar": ["PC", "makine"],
             "internet": ["web", "ağ"],
             "yazılım": ["program", "uygulama"],
             "cihaz": ["aygıt", "donanım"],
-            
+
             "para": ["nakit", "sermaye"],
             "düşüş": ["azalış", "gerileme"],
             "yükseliş": ["artış", "büyüme"],
             "şirket": ["firma", "kurum"],
             "fiyat": ["ücret", "bedel"],
-            
+
             "kıyafet": ["giysi", "elbise"],
             "moda": ["trend", "akım"],
             "güzel": ["şık", "harika"],
@@ -35,39 +37,38 @@ class DataAugmenter:
         }
 
     def augment_text(self, text):
-        words = text.split()
-        new_words = words.copy()
-        changes_made = False
-        
+        words = text.split()  # basit ayırma işlemi
+        new_words = words.copy()  # orijinal listeyi bozmamak için kopyaladık
+        changes_made = False  # değişiklik: yok
+
         for i, word in enumerate(words):
-            # Noktalama temizliği yapmadan basit kontrol
+            # nokta ve virgülle biten kelime+noktalama verisinden sadece kelimeleri alır
             clean_word = word.lower().replace('.', '').replace(',', '')
-            
+
             if clean_word in self.synonyms:
-                # Rastgele bir eş anlamlı seç
                 synonym = random.choice(self.synonyms[clean_word])
-                new_words[i] = synonym # Kelimeyi değiştir
+                new_words[i] = synonym
                 changes_made = True
-                
+
         if changes_made:
             return " ".join(new_words)
         else:
-            return None # Değişiklik yapılamadıysa None dön
+            return None  # Değişiklik yapılamadıysa None dön
 
     def augment_dataframe(self, df):
         print(f"Orijinal Veri Sayısı: {len(df)}")
         new_rows = []
-        
+
         for index, row in df.iterrows():
             original_text = row['text']
             label = row['label']
-            
+
             # Veri türet
             aug_text = self.augment_text(original_text)
-            
+
             if aug_text:
                 new_rows.append({"text": aug_text, "label": label})
-                
+
         if len(new_rows) > 0:
             new_df = pd.DataFrame(new_rows)
             # Orijinal ile yenileri birleştir

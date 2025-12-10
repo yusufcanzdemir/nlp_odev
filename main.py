@@ -29,7 +29,7 @@ def main():
         print("2. BoW ile Eğit")
         print("3. N-GRAM ile Eğit")
         print("4. WORD2VEC ile Eğit")
-        print("---------------------------")
+        print("=============================")
         print("5. Canlı Tahmin Yap")
         print("6. Veri Setini Çoğalt (Augmentation)")
         print("7. Çıkış")
@@ -61,13 +61,13 @@ def main():
                 print(f"\nHATA: Öznitelik çıkarılırken sorun oluştu: {e}")
                 continue 
 
-            if X is not None:
+            if X is not None: # özellike çıkarımı yapıldıysa
                 print(f"Vektör Matrisi Hazır. Boyut: {X.shape}")
                 if secim == '4':
-                    print("BİLGİ: Word2Vec negatif değerler üretebildiği için otomatik olarak KNN seçildi.")
+                    print("BİLGİ: Word2Vec negatif değerlerde ürettiği için otomatik olarak KNN seçildi.")
                     trained_model = train_knn(X, df['label'])
                 else:
-                    print("\n--- ALGORİTMA SEÇİN ---")
+                    print("\n=== ALGORİTMA SEÇİN ===")
                     print("A: Naive Bayes")
                     print("B: KNN")
                     print("C: MaxEnt / Logistic Regression")
