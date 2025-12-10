@@ -1,4 +1,4 @@
-# Sanal Ortam (En önemlisi bu!)
+# Sanal Ortam 
 venv/
 .env
 
@@ -11,8 +11,5 @@ __pycache__/
 # VS Code ayar dosyaları
 .vscode/
 
-# Veri Seti (Raw dosyaları yükleme)
+# Veri Seti
 data/ttc3600/
-
-# Eğer CSV çok büyükse bunu da açabilirsin (başındaki # işaretini kaldır)
-# data/dataset.csv
